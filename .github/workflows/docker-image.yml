@@ -37,8 +37,8 @@ jobs:
         name: login to dockerhub
         uses: docker/login-action@v1
         with:
-          username: "gvan3000"
-          password: "[~L7Z=(dgtU@hpJ"
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
         name: buld and push
         uses: docker/build-push-action@v2
@@ -46,4 +46,4 @@ jobs:
           context: .
           file: ./CarvedRock.Api/Dockerfile
           push: true
-          tags: gvan3000/carvedrockapi:latest, gvan3000/carvedrockapi:${{ github.run_number }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/carvedrockapi:latest, ${{ secrets.DOCKERHUB_USERNAME }}/carvedrockapi:${{ github.run_number }}
